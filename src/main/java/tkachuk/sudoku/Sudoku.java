@@ -92,7 +92,9 @@ public class Sudoku
                 countRow += 3;
             }
             if (countRow > 6)
+            {
                 countRow = 0;
+            }
 
         }
 
