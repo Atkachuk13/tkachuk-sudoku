@@ -1,10 +1,20 @@
 package tkachuk.sudoku;
 
+import java.util.AbstractList;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class Sudoku
 {
-    private int [][] arr;
+    List<String> list = new ArrayList<String>();
+
+    public List<String> getList()
+    {
+        return list;
+    }
+
+    private int[][] arr;
 
     public Sudoku(int[][] arr)
     {
@@ -23,83 +33,81 @@ public class Sudoku
 
     public List<String> getErrors()
     {
-        // return a list of strings
-        // tells you where the errors in the board are
-        // column # row # duplicate x
-        // (number that is duplicated)
-        // Book N dyplicate x
-
         // check horizontally
-        int [] row = new int[9];
-        int count = 0;
-        int num1;
-        int num2;
-        for(int ix = 0; ix < arr.length; ix++)
+        for (int col = 0; col < arr[0].length; col++)
         {
-            for(int jx = 0; ix < arr[0].length; jx++)
+            HashSet<Integer> set = new HashSet<Integer>();
+            for (int row = 0; row < arr.length; row++)
             {
-//                arr[ix][jx].equals(arr[ix][jx++]);
-//                row[count] = arr[ix][jx];
-//                count++;
-
-                if(count == 8)
+                if (set.contains(arr[row][col]))
                 {
-                    // check for mistakes
-                    for(int ii = 0; ii < row.length; ii++)
-                    {
-                        num1 = row[ii];
-                        num2 = row[ii + 1];
-
-                    }
-
-                    count = 0;
+                    list.add("Horiz.: " + "column " + col + " row " + row + " duplicate " + arr[row][col]);
                 }
-
+                set.add(arr[row][col]);
             }
 
         }
 
         // check vertically
-        int [] column = new int[9];
-       // count = 0;
-
-        for(int jx = 0; jx < arr[0].length; jx++)
+        for (int row = 0; row < arr.length; row++)
         {
-            for(int ix = 0; ix < arr.length; ix++)
+            HashSet<Integer> set = new HashSet<Integer>();
+            for (int col = 0; col < arr[0].length; col++)
             {
-                column[count] = arr[jx][ix];
-                count++;
-
-                if(count == 8)
+                if (set.contains(arr[row][col]))
                 {
-                    // check for mistakes
+                    list.add("Vertic.: " + "column " + col + " row " + row + " duplicate " + arr[row][col]);
+                }
+                set.add(arr[row][col]);
 
-                    count = 0;
+            }
+
+        }
+
+        // check boxes
+        int countRow = 0;
+        int countCol = 0;
+
+        for (int box = 1; box < 10; box++)
+        {
+            HashSet<Integer> set = new HashSet<Integer>();
+
+            for (int col = 0; col < 3; col++)
+            {
+                for (int row = 0; row < 3; row++)
+                {
+                    if (set.contains(arr[row + countRow][col + countCol]))
+                    {
+                        list.add("Box: " + box + " duplicate " + arr[row + countRow][col + countCol]);
+                    }
+                    set.add(arr[row + countRow][col + countCol]);
+
                 }
 
             }
+            countCol += 3;
+            if (countCol > 6)
+            {
+                countCol = 0;
+                countRow += 3;
+            }
+            if (countRow > 6)
+                countRow = 0;
+
         }
 
-
-        // check boxes
-        int [] box = new int[9];
-        for(int ix = 0; ix < 2; ix++)
-            for(int jx = 0; jx < 2; jx++)
-            {
-                box[count] = arr[ix][jx];
-            }
-
-        return null;
+        System.out.println(list.toString());
+        return list;
     }
 
     @Override
     public String toString()
     {
-        for(int i = 0; i < arr.length; i++)
+        for (int i = 0; i < arr.length; i++)
         {
             System.out.println('\n' + "-------------------------------------");
 
-            for(int j = 0; j < arr[0].length; j++)
+            for (int j = 0; j < arr[0].length; j++)
             {
                 System.out.print("| " + arr[i][j] + ' ');
             }
