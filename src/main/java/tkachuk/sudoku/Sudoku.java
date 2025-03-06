@@ -7,12 +7,6 @@ import java.util.List;
 
 public class Sudoku
 {
-    List<String> list = new ArrayList<String>();
-
-    public List<String> getList()
-    {
-        return list;
-    }
 
     private int[][] arr;
 
@@ -21,18 +15,10 @@ public class Sudoku
         this.arr = arr;
     }
 
-    public int[][] getArr()
-    {
-        return arr;
-    }
-
-    public void setArr(int i, int j, int num)
-    {
-        arr[i][j] = num;
-    }
-
     public List<String> getErrors()
     {
+        List<String> list = new ArrayList<String>();
+
         // check horizontally
         for (int col = 0; col < arr[0].length; col++)
         {
@@ -105,18 +91,20 @@ public class Sudoku
     @Override
     public String toString()
     {
+        StringBuilder board = new StringBuilder();
+
         for (int i = 0; i < arr.length; i++)
         {
-            System.out.println('\n' + "-------------------------------------");
+            board.append('\n' + "-------------------------------------" + '\n');
 
             for (int j = 0; j < arr[0].length; j++)
             {
-                System.out.print("| " + arr[i][j] + ' ');
+                board.append("| " + arr[i][j] + ' ');
             }
-            System.out.print("|");
+            board.append("|");
         }
-        System.out.println('\n' + "---------------------------------------");
-        return null;
+        board.append('\n' + "---------------------------------------" + '\n');
+        return board.toString();
     }
 
 }
