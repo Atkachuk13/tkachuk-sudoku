@@ -13,6 +13,7 @@ class SudokuTest
     @Test
     public void getErrors()
     {
+
         // board with errors
         int[][] nums = {
                 {4, 3, 5, 2, 6, 9, 7, 8, 1},
@@ -24,6 +25,7 @@ class SudokuTest
                 {5, 1, 9, 3, 2, 6, 8, 7, 4},
                 {2, 4, 8, 9, 5, 7, 1, 3, 6},
                 {7, 6, 3, 4, 1, 8, 2, 5, 9}};
+
         Sudoku board = new Sudoku(nums);
 
         board.toString();
@@ -44,8 +46,9 @@ class SudokuTest
     @Test
     public void getErrorsCorrect()
     {
+
         // correct board
-        int[][] nums = new int[][]{
+        int[][] nums = {
                 {5, 3, 4, 6, 7, 8, 9, 1, 2},
                 {6, 7, 2, 1, 9, 5, 3, 4, 8},
                 {1, 9, 8, 3, 4, 2, 5, 6, 7},
@@ -55,6 +58,7 @@ class SudokuTest
                 {9, 6, 1, 5, 3, 7, 2, 8, 4},
                 {2, 8, 7, 4, 1, 9, 6, 3, 5},
                 {3, 4, 5, 2, 8, 6, 1, 7, 9}};
+
         Sudoku board = new Sudoku(nums);
 
         board.getErrors();
@@ -67,7 +71,8 @@ class SudokuTest
     @Test
     public void toStringTest()
     {
-        int[][] nums = new int[][]{
+
+        int[][] nums = {
                 {5, 3, 4, 6, 7, 8, 9, 1, 2},
                 {6, 7, 2, 1, 9, 5, 3, 4, 8},
                 {1, 9, 8, 3, 4, 2, 5, 6, 7},
