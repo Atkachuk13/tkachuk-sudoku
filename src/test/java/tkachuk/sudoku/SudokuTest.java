@@ -28,8 +28,6 @@ class SudokuTest
 
         Sudoku board = new Sudoku(nums);
 
-        board.getErrors();
-
         List<String> expectedList = Arrays.asList(
                 "Horiz.: column 3 row 5 duplicate 2",
                 "Vertic.: column 8 row 4 duplicate 8",
@@ -39,8 +37,14 @@ class SudokuTest
 
         assertEquals(expectedList, board.getErrors());
 
+    }
+
+    @Test
+    public void getErrorsCorrect()
+    {
+
         // correct board
-        int[][] nums2 = {
+        int[][] nums = {
                 {5, 3, 4, 6, 7, 8, 9, 1, 2},
                 {6, 7, 2, 1, 9, 5, 3, 4, 8},
                 {1, 9, 8, 3, 4, 2, 5, 6, 7},
@@ -51,13 +55,11 @@ class SudokuTest
                 {2, 8, 7, 4, 1, 9, 6, 3, 5},
                 {3, 4, 5, 2, 8, 6, 1, 7, 9}};
 
-        Sudoku board2 = new Sudoku(nums2);
+        Sudoku board = new Sudoku(nums);
 
-        board2.getErrors();
+        List<String> expectedList = Arrays.asList();
 
-        List<String> expectedList2 = Arrays.asList();
-
-        assertEquals(expectedList2, board2.getErrors());
+        assertEquals(expectedList, board.getErrors());
 
     }
 
