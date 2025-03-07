@@ -1,2 +1,6 @@
 rootProject.name = 'tkachuk-sudoku'
+include 'src'
+include 'src'
+include 'src:main:test'
+findProject(':src:main:test')?.name = 'test'
 
